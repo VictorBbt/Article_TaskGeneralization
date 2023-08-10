@@ -31,7 +31,7 @@
 \maketitle
 
 \begin{abstract}
-We provide a complete framework for learning, reproducing and generalizing tasks from human demonstrations. This method adapts recent developments in automatic, unsupervised segmentation of time-series to humanoid robotics by preprocessing the data obtained from a broad range of the robot's sensors.
+We provide a complete framework for learning, reproducing and generalizing tasks from human demonstrations. This method adapts recent developments in automatic, unsupervised segmentation of time-series to humanoid robotics by preprocessing the data obtained from a broad range of the robot's sensors.\fk{The main contents seems to be a segmentation method.}
 
 In more detail,  we reproduce and extend the acquired multi-step task using Dynamic Movement Primitives in simulation for the JVRC1 Robot, and further validate it in the real world with the HRP-4C Robot, thus showcasing the capacity of our approach to create an extensive library of reusable skills for complex humanoids.
 \end{abstract}
@@ -40,11 +40,11 @@ In more detail,  we reproduce and extend the acquired multi-step task using Dyna
 learning from demonstration, generalization, teleoperation, probabilistic inference, feature selection, dynamic movement primitives, sensory skill integration
 \end{IEEEkeywords}
 
-\fk{try to shorten to six pages for the initial submission.}
+\fk{try to shorten (especially Section II) to six pages for the initial submission.}
 \section{Introduction}
 \subsection{Learning from Demonstration}
 
-Demonstrations provide an intuitive way for non-professional users to specify tasks to the robot \cite{schaal_is_1999}. Most of robot's controllers to date, albeit successful to achieve complex tasks, often require theoretical knowledge and is time-consuming. To address these issues, research about robot learning from demonstration (LfD) has become increasingly important over the past two decades with the surge of Machine Learning (ML) algorithms \cite{argall_survey_2009} \cite{ravichandar_recent_2020}. In this framework, users can demonstrate a task that is then learned and generalized by the robot. Generalization is defined as the capacity to perform a learned task in a similar environment as the one of the demonstration, but under different initial or goal poses. LfD has been widely used and proved successful on robotic arms or in simulation \cite{pastor_learning_2009}, but are more seldom used on real humanoid robots \cite{calinon_learning_2007}due to their high number of degrees of freedom (DoF) and unlinear behavior. A core idea of this work is to capitalize on the physiologic similarities between us, humans, and humanoids robots to come up with an intuitive LfD technique.  \fk{need to confirm that a humanoid specific method is proposed}
+Demonstrations provide an intuitive way for non-professional users to specify tasks to the robot \cite{schaal_is_1999}. Most of robot's controllers to date, albeit successful to achieve complex tasks, often require theoretical knowledge and is time-consuming. To address these issues, research about robot learning from demonstration (LfD) has become increasingly important over the past two decades with the surge of Machine Learning (ML) algorithms \cite{argall_survey_2009} \cite{ravichandar_recent_2020}. In this framework, users can demonstrate a task that is then learned and generalized by the robot. Generalization is defined as the capacity to perform a learned task in a similar environment as the one of the demonstration, but under different initial or goal poses. LfD has been widely used and proved successful on robotic arms or in simulation \cite{pastor_learning_2009}, but are more seldom used on real humanoid robots \cite{calinon_learning_2007} due to their high number of degrees of freedom (DoF) and unlinear behavior. A core idea of this work is to capitalize on the physiologic similarities between us, humans, and humanoids robots to come up with an intuitive LfD technique.  \fk{need to confirm that a humanoid specific method is proposed}
 
 \textbf{Note:} There is little difference between LfD and imitation learning, mainly imitation learning requires embodiment mapping \cite{argall_survey_2009}, that is to say a treatment of the data to transform it from high-level information (i.e, a video of the executed task) to low-level data (joint positions, torques) easily understandable for the robot. LfD provides directly this low-level data to the robot. In this article, we will employ both terms indifferently, as our main focus is how to deal with the low-level data in input of the robot. \newline\fk{this note is not necessary}
 
@@ -226,6 +226,7 @@ Once the demonstrations gathered, the choice of the features to study is another
 
 \end{itemize}
 
+\fk{these detailed experimental conditions should be described in the next section}
  We first design a controller to build a dataset in  simulation on the JVRC1 virtual humanoid. To that end, we designed a finite state machine (FSM) controller with B-splines with mc-rtc\fk{reference} and mc-mujoco \cite{singh2023mc} to simulate a one-handed grasping task of a stick in 9 different configurations \fk{figure with mujoco interface and 2D schema}. Then, we build a real-world dataset, with the JRL's teleoperation device  with the HRP-4C robot (Fig.~\ref{fig:setup}). The user has a the visual input of the humanoid's front camera, and achieves the task naturally, except that there is no force  feedback on the grippers, meaning that the demonstrator is not constrained by the physical shape of the object during the demonstrations.
  
  The same process is employed to build two datasets for a pushing task, where the goal is merely to push a box on a table using a hand. The video of the demonstration with teleoperation are available at \fk{incomplete}
@@ -310,7 +311,7 @@ To consider that a segmentation is correct, a demonstration of a grasping task m
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.5\textwidth]{img/colored_segmentation.png}
-  \caption{Correct segmentation of a grasping task. We have one changepoint inside the confidence zone, that is whren the gripper is closing itself on the object. The different phases are coloured in beige (approach phase) and blue (move object phase).\fk{improve resolution}}
+  \caption{Correct segmentation of a grasping task. We have one changepoint inside the confidence zone, that is when the gripper is closing itself on the object. The different phases are coloured in beige (approach phase) and blue (move object phase).\fk{improve resolution, change the background color of the legent}}
   \label{fig:coloredseg}
 \end{figure}
 
@@ -333,7 +334,7 @@ Such results can also come from the demonstrations contained in the dataset. The
 To reproduce the task, we compute DMP models for each segment of each demonstration and store them as $yaml$ files. We learn one DMP for the 6d-pose and one for the state of the gripper. Both are coordinated by the same phase variable.
 
 When performing again this learned skill given a new goal position, we interpolate the new goal with all the precedently learned goals to find a new DMP model that fits to the task. Tasks have been reproduced using this method for the simulated grasping and pushing tasks with 100\% rate of success for the demonstrations that were correctly segmented. The execution time to reproduce the task was longer (approximately 1.5 times longer \fk{this depends on the performance of CPU. The model number needs to be mentioned.}due to bigger calculations at runtime to compute the next desired position with the DMP). The reproduction on the real robot is a more complex issue that is left to future work. 
-
+\fk{no snapshots of demonstrations and reproductions?}
 
 \section{Conclusion and future work}\label{conclusion}
 
