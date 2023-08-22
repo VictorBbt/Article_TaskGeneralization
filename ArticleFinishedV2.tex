@@ -40,7 +40,7 @@ In more detail,  we reproduce and extend the acquired multi-step task using Dyna
 learning from demonstration, generalization, teleoperation, probabilistic inference, feature selection, dynamic movement primitives, sensory skill integration
 \end{IEEEkeywords}
 
-\fk{try to shorten (especially Section II) to six pages for the initial submission.}
+\fk{try to shorten (especially Section II) to six pages for the initial submission. For example, as we are just using DMP, II-B can be completely removed.}
 \section{Introduction}
 \subsection{Learning from Demonstration}
 
@@ -66,13 +66,13 @@ Splitting a complex task such as grasping an object or pouring water has the adv
 Recent methods provide plans to the robot about the different phases of the demonstration using natural language or computer vision \cite{caccavale_kinesthetic_2019} \cite{saran_enhancing_2019}. Besides, probabilistic approaches are employed to segment a demonstration in a unsupervised fashion. The number of phases involved as well as the temporal position of changepoint (CP) are inferred automatically. These techniques include Hidden Markov Models (HMM) \cite{niekum_learning_2015}, Gaussian Mixture Regression (GMR) \cite{calinon_learning_2010} \cite{calinon_learning_2007} and more seldom reinforcement learning techniques \cite{kroemer_towards_2015}. Throughout the upcited references, the features that are selected to learn the task are manually selected by the user. Working with such specially chosen features often produces satisfactory results inasmuch as the skilled demonstrator knows which feature (positions, orientations, state of the gripper, ...) is relevant to study. However, the feature selection has to be rethinked from scratch for each new task. \newline
 
 \fk{The objective of this research must be stated clearly earlier. \newline
-Victor: I think it is stated in the abstract. If it is not sufficient, where does it have to appear ?}
+Victor: I think it is stated in the abstract. If it is not sufficient, where does it have to appear ?\newline FK:how about end of I-A?}
 
 
 Our method addresses all the upcited issues in a comprehensive framework (Fig. \ref{fig:framework} that combines state-of-the-art LfD techniques with unsupervised automatic segmentation to achieve robust task learning and generalization. We primarily fetch almost all the data available, whether it is kinetic  or sensory, from a small number of demonstrations and automatically selects the most relevant features to study with Dynamic Time Warping (DTW) \cite{dtw} and correlation analysis. Segmentation is achieved with Classification Score Profile (ClaSP) \cite{clasp} and task reproduction and generalization is performed with DMP \cite{ijspeert_movement_2002} \cite{ijspeert_dynamical_2013}. This framework is applied in simulation on the JVRC1 \cite{jvrc} and in real world on the HRP-4C \cite{hrp4} humanoid robot.
 
 \textit{Contributions:} 
-This framework transfers state-of-the-art generalization techniques developed mainly for armed robots to complex humanoids, supplemented by a preprocessing method that automatically selects the most relevant features of the studied task. To do so, we adapt the ClaSP \cite{Cl} algorithm to multivariate time-series.
+This framework transfers state-of-the-art generalization techniques developed mainly for armed robots to complex humanoids, supplemented by a preprocessing method that automatically selects the most relevant features of the studied task. To do so, we adapt the ClaSP \cite{Cl}\fk{reference} algorithm to multivariate time-series.\fk{what made the transfer possible? That is the contribution.}
 
 \subsection{Outline}
 
@@ -212,7 +212,7 @@ This definition maps a quaternion \(q\) from the unit sphere \(S^3\) to a vector
 \begin{figure*}[t]
   \centering
        \includegraphics[width=\linewidth]{img/framework.png}
-       \caption{Proposed task learning and generalization. First, we demonstrate the task with a teleoperation device (image on the left). The data is then preprocessed and features that are the most correlated (histogram on the mid-left) are selected for the segmentation with the ClaSP algorithm (image on the middle). This allows for the potential changepoints to be identified and filtered with sensor values (image on the mid-right). Finally, we can reproduce the task with Dynamic Movement Primitives on the HRP-4C robot (image on the left).}
+       \caption{Proposed task learning and generalization. First, we demonstrate the task with a teleoperation device (image on the left). The data is then preprocessed and features that are the most correlated (histogram on the mid-left) are selected for the segmentation with the ClaSP algorithm (image on the middle). This allows for the potential changepoints to be identified and filtered with sensor values (image on the mid-right). Finally, we can reproduce the task with Dynamic Movement Primitives on the HRP-4C robot (image on the left).\fk{texts are too small. Check all the figures.}\fk{I think it is better to use conceptual drawings instead of the real three plots.}}
      \label{fig:framework}
 \end{figure*}
 
@@ -300,7 +300,7 @@ We finally validate the CPs computed with ClaSP if it belongs to the confidence 
  `\begin{figure}[ht]
   \centering
   \includegraphics[width=0.45\textwidth]{img/simSetup4.png}
-  \caption{Setup for the dataset built in simulation. On the left, the Mujoco interface with the JVRC-1 \cite{jvrc} at the beginning and at then end of the grasping task. On the left, the positions in which is positioned the object to grab, with the pose of the gripper before grasping the stick and the direction in which the latter is lifted.}
+  \caption{Setup for the dataset built in simulation. On the left, the Mujoco interface with the JVRC-1 \cite{jvrc} at the beginning and at then end of the grasping task. On the left, the positions in which is positioned the object to grab, with the pose of the gripper before grasping the stick and the direction in which the latter is lifted.\fk{crop the screenshots to show the robot bigger.}}
   \label{fig:simSetup}
 \end{figure}
 
@@ -343,9 +343,9 @@ Such results can also come from the demonstrations contained in the dataset. The
 To reproduce the task, we compute DMP models for each segment of each demonstration and store them as $yaml$ files. We learn one DMP for the 6d-pose and one for the state of the gripper. Both are coordinated by the same phase variable.
 
 When performing again this learned skill given a new goal position, we interpolate the new goal with all the precedently learned goals to find a new DMP model that fits to the task. Tasks have been reproduced using this method for the simulated grasping and pushing tasks with 100\% rate of success for the demonstrations that were correctly segmented. The execution time to reproduce the task was longer (approximately 1.5 times longer \fk{this depends on the performance of CPU. The model number needs to be mentioned. \newline
-Victor/ I don't have the CPU reference of the computer I had at AIST.} due to bigger calculations at runtime to compute the next desired position with the DMP). The reproduction on the real robot is a more complex issue that is left to future work. 
+Victor/ I don't have the CPU reference of the computer I had at AIST.\newline FK:i9-10885H} due to bigger calculations at runtime to compute the next desired position with the DMP). The reproduction on the real robot is a more complex issue that is left to future work. 
 \fk{no snapshots of demonstrations and reproductions? \newline
-Victor: I did not have the time to perform the reproduction on the real robot. In simulation, I tested it but had not the time to record properly the task reprodution in video. I might have screenshots for the grasping task, should I add those ?}
+Victor: I did not have the time to perform the reproduction on the real robot. In simulation, I tested it but had not the time to record properly the task reprodution in video. I might have screenshots for the grasping task, should I add those ?\newline FK: If you have some, please add.}
 
 \section{Conclusion and future work}\label{conclusion}
 
