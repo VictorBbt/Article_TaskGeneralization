@@ -71,8 +71,8 @@ Recent methods provide plans to the robot about the different phases of the demo
 
 \begin{figure*}[t]
   \centering
-  \includegraphics[width=\linewidth]{img/framework.png}
-  \caption{Proposed task learning and generalization framework. First, we demonstrate the task with a teleoperation device (image on the left). The data is then preprocessed and features that are the most correlated (histogram on the mid-left) are selected for the segmentation with the ClaSP algorithm (image on the middle). This allows for the potential CPs to be identified and filtered with sensor values (image on the mid-right). Finally, we can reproduce the task with Dynamic Movement Primitives on the HRP-4C robot (image on the left).}
+  \includegraphics[width=0.85\linewidth]{img/framework.pdf}
+  \caption{Proposed task learning and generalization framework. First, we demonstrate the task with a teleoperation device (image on the left). The data is then preprocessed and features that are the most correlated (histogram on the mid-left) are selected for the segmentation with the ClaSP algorithm (image on the middle). This allows for the potential CPs to be identified and filtered with sensor values (image on the mid-right). Finally, we can reproduce the task with Dynamic Movement Primitives on the HRP-4C robot (image on the right).}
   \label{fig:framework}
 \end{figure*}
 
@@ -176,8 +176,8 @@ We can then compute a \textit{correlation matrix} for each feature across all tr
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=0.35\textwidth, height = 2.3in]{img/resolCorrMap.png}
-  \caption{Example of a correlation matrix that shows how one feature (here, the angular Velocity of the end-effector) is correlated across the 9 demonstrations.}
+  \includegraphics[width=0.4\textwidth]{img/resolCorrMap.pdf}
+  \caption{Example of a correlation matrix that shows how one feature (here, the angular velocity of the end-effector) is correlated across the 9 demonstrations.}
   \label{fig:corrMat}
 \end{figure}
 
@@ -186,15 +186,15 @@ Finally, we select the features to pass in argument for the segmentation phase. 
 \begin{figure}[t]
   \centering
 
-  \begin{minipage}[b]{0.47\linewidth}
+  \begin{minipage}[t]{0.49\linewidth}
     \centering
-    \includegraphics[width=0.9\linewidth]{img/hist_raw.png}
+    \includegraphics[width=0.95\linewidth]{img/hist_raw.pdf}
     \caption*{(a) Average on the correlation coefficients only}
   \end{minipage}
   \hfill
-  \begin{minipage}[b]{0.47\linewidth}
+  \begin{minipage}[t]{0.49\linewidth}
     \centering
-    \includegraphics[width=0.9\linewidth]{img/hist_dtw.png}
+    \includegraphics[width=0.95\linewidth]{img/hist_dtw.pdf}
     \caption*{(b) Taking into account the  distance computed with Dynamical Time Warping}
   \end{minipage}
 
@@ -214,7 +214,7 @@ Then, we tried different methods to combine the profiles of the features studied
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=0.35\textwidth, height=2in]{img/resolKaiser.png}
+  \includegraphics[width=0.4\textwidth]{img/resolKaiser.pdf}
   \caption{ClaSP profile after being filtered with the Kaiser filter. The value of the filtered profile fades on the edges of the profile, thus limiting the possibility to have a big sequence of short subtasks.}
   \label{fig:Kaiser}
 \end{figure}
@@ -233,33 +233,29 @@ We finally validate the CPs computed with ClaSP if it belongs to the confidence 
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=0.45\textwidth]{img/simSetup6.png}
-  \caption{Setup for the dataset built in simulation. On the left, the Mujoco interface with the JVRC-1 \cite{jvrc} at the beginning of the grasping task. On the left, the positions in which is positioned the object to grab, with the pose of the gripper before grasping the stick and the direction in which the latter is lifted.}
+  \includegraphics[width=0.49\textwidth]{img/simSetup6.pdf}
+  \caption{Setup for the dataset built in simulation. On the left, the Mujoco interface with the JVRC1 \cite{jvrc} at the beginning of the grasping task. On the left, the positions in which is positioned the object to grab, with the pose of the gripper before grasping the stick and the direction in which the latter is lifted.}
   \label{fig:simSetup}
 \end{figure}
 
  The same process is employed to build two datasets for a pushing task, where the goal is merely to push a box on a table using a hand. The video of the demonstration with teleoperation are available \href{https://github.com/VictorBbt/Article_TaskGeneralization}{here}.
 
  In both cases, mc-rtc logs all the sensor and proprioceptive values that are then used to learn and generalize the task. The task can be represented by all its normalized feature values in skill maps as in Fig.~\ref{fig:skillmap}. Using this map, we extract appropriate features and segment it into interpretable phases. The 3 features selected for the grasping task were the state of the gripper, the linear velocity and the position on the x axis. %Nonetheless, the demonstrations provided with the teleoperation device are more similar to each other rather than the dataset built in simulation. \textcolor{red}{That is due to the mechanical constraints of the real-robot. Those are a lot more complex in reality than in simulation.}
-\fk{what kind of sensor information was used? \newline
-Victor: There are shown on the skill map}
 
  \begin{figure}[t]
   \centering
-  \includegraphics[width=0.45\textwidth]{img/skillMap.png}
+  \includegraphics[width=0.45\textwidth]{img/skillMap.pdf}
   \caption{Representation of a task in a skill map. All the features are normalized between 0 and 1. Throughout the entire task (represented in timesteps on the abscissa), we observe the evolution of all the features studied. The higher the value of the normalized feature, the clearer on the skill map.}
   \label{fig:skillmap}
 \end{figure}
 
 To consider that a segmentation is correct, a demonstration of a grasping task must have one CP at the transition between the approach phase (when getting closer to the object) and the moving-object phase (grabbing the object and move it towards an other position). 
 %In this work, the object is not released by the robot, the task stops when the robot has lifted the object to a final position. 
-Figure \ref{fig:coloredseg} is a correct segmentation for a grasping task. As we can see on this figure, for the considered trial, five potential CPs were identified, but only one is within the confidence zone, thus giving in the end a correct segmentation for this grasping task. Over the dataset, we compute the success rate as the number of trials correctly segmented over the total number of trials.
-\fk{what is the definition of the correct segmentation? \newline
-Victor: This paragraph defines a correct segmentation for the grasping task, and the next what we expect of a correct segmentation for the pushing task.}
+Figure~\ref{fig:coloredseg} is a correct segmentation for a grasping task. As we can see on this figure, for the considered trial, five potential CPs were identified, but only one is within the confidence zone, thus giving in the end a correct segmentation for this grasping task. Over the dataset, we compute the success rate as the number of trials correctly segmented over the total number of trials.
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=0.5\textwidth,height=2.5in]{img/resolSeg.png}
+  \includegraphics[width=0.5\textwidth]{img/resolSeg.pdf}
   \caption{Correct segmentation of a grasping task. We have one CP inside the confidence zone, that is when the gripper is closing itself on the object. The different phases are coloured in beige (approach phase) and blue (move object phase).}
   \label{fig:coloredseg}
 \end{figure}
@@ -276,7 +272,7 @@ While only 50\% of the demonstrations are correctly segmented in the real graspi
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=0.5\textwidth]{img/results_segmentation.png}
+  \includegraphics[width=0.5\textwidth]{img/results_segmentation.pdf}
   \caption{Results of the segmentation for the tasks considered. While approximately 80\% of the task are successfully reproduced in simulation (blue), the average percentage is around 50\% on the real robot (orange).}
   \label{fig:resultsSeg}
 \end{figure}
