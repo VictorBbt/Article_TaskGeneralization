@@ -1,6 +1,8 @@
-\documentclass[conference]{IEEEtran}
+\documentclass[a4paper, 10pt, conference]{ieeeconf}
 \IEEEoverridecommandlockouts
 % The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\overrideIEEEmargins                                      % Needed to meet printer requirements.
+
 \usepackage{cite}
 \usepackage{url}
 \usepackage{hyperref}
@@ -14,21 +16,19 @@
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \newcommand{\fk}[1]{\textcolor{red}{[FK:#1]}}
-\begin{document}
-
 \title{\textbf{Learning and generalizing tasks on humanoid robots with an automatic and multisensory segmentation method}
 }
 
-\author{\IEEEauthorblockN{Victor Barberteguy$^{1,2}$}
-\IEEEauthorblockA{}
-\and
-\IEEEauthorblockN{Fumio Kanehiro$^{2}$}
-\IEEEauthorblockA{}
+\author{Victor Barberteguy$^{1,2}$ and Fumio Kanehiro$^{2}$
 \thanks{$^{1}$Ecole Polytechnique, Palaiseau, France}
 \thanks{$^{2}$CNRS-AIST JRL (Joint Robotics Laboratory), IRL, National Institute of Advanced Industrial Science and Technology (AIST), Tsukuba, Japan}
 }
 
+\begin{document}
+
 \maketitle
+\thispagestyle{empty}
+\pagestyle{empty}
 
 \begin{abstract}
 We provide a complete framework for learning and reproducing tasks from human demonstrations. This framework adapts recent developments in automatic, unsupervised segmentation of time-series to humanoid robotics by preprocessing the data obtained from a broad range of the robot's sensors, to then repropduce the learned task in similar environments.
@@ -36,9 +36,9 @@ We provide a complete framework for learning and reproducing tasks from human de
 In more detail,  we reproduce and extend the acquired multi-step task using Dynamic Movement Primitives in simulation for the JVRC1 Robot, and further validate it in the real world with the HRP-4C Robot, thus showcasing the capacity of our approach to create an extensive library of reusable skills for complex humanoids.
 \end{abstract}
 
-\begin{IEEEkeywords}
-learning from demonstration, generalization, teleoperation, probabilistic inference, feature selection, dynamic movement primitives, sensory skill integration
-\end{IEEEkeywords}
+% \begin{IEEEkeywords}
+% learning from demonstration, generalization, teleoperation, probabilistic inference, feature selection, dynamic movement primitives, sensory skill integration
+% \end{IEEEkeywords}
 
 \section{Introduction}
 \subsection{Learning from Demonstration}
