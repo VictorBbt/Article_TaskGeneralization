@@ -1,0 +1,34 @@
+Comments to author (Associate Editor)
+=====================================
+
+The paper presents a framework for learning and reproducing
+tasks from human demonstrations using robots. While it
+offers promising results in simulation, it would benefit
+from clarification regarding its real-world applicability
+and a more explicit statement of its unique contributions
+compared to existing work. In particular the authors are
+encouraged to address the following:
+
+- The paper should clarify why the JVRC1 Robot was used in
+simulation and its relevance to real-world applications
+with the HRP-4C Robot.
+
+- The authors should state more explicitly the paper's
+primary contributions to distinguish it from related
+research.
+
+- Address the gap between simulation and real-world
+performance and discuss plans for improvement.
+
+- Provide a clear rationale for the selection of task
+features, especially the choice of the x-axis position.
+
+- Ensure clarity in figures and explanations, addressing
+reviewer concerns.
+
+
+----------------------------------------
+Comments on Video Attachment:
+
+Please improve resolution of the video, and consider
+trimming out repetitive tasks.

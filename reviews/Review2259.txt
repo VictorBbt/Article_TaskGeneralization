@@ -1,0 +1,20 @@
+Reviewer 13 of SII 2024 submission 288
+
+Comments to the author
+======================
+
+The paper present the system integration for HRI, including
+learning from demonstration and segmenting tasks. The
+integration appears good, from gathering data, to 
+extracting features (with synched sensors), and segmenting
+them. The results are also promising (though a bit low
+performance).  What is really missing from the paper, is a
+statement of what is new and different compared to other
+works out there that try to solve the same problem.
+Overall, a good paper.
+
+Comments on the Video Attachment
+================================
+
+I was not able to play the video on Ubuntu, but when I used
+my Mac it appeared OK, but a bit of low resolution quality.

@@ -1,0 +1,29 @@
+Reviewer 9 of SII 2024 submission 288
+
+Comments to the author
+======================
+
+In this paper, the authors propose a complete framework for
+learning and reproducing tasks from human demonstrations.
+The authors reproduce and extend the acquired multistep
+task using Dynamic Movement Primitives in simulation for
+the JVRC1 Robot, and further validate it in the real world
+with the HRP-4C Robot.
+
+The comments and questions are listed as follows:
+
+(1) What is the purpose of the simulation for the JVRC1
+Robot, are there any relationship with the real world
+application with the HRP-4C Robot
+
+(2) What is the main contribution of the proposed framework
+
+(3) What is the successful rate of the real task, and how
+to improve the successful rate in the future work
+
+
+Comments on the Video Attachment
+================================
+
+It is a nice video, maybe more real application would be
+fine.

@@ -1,0 +1,72 @@
+Reviewer 2 of SII 2024 submission 288
+
+Comments to the author
+======================
+
+	This paper presents a framework for learning and
+reproducing tasks from human demonstrations. The paper
+learns dynamic movement primitives in simulation and
+validates them in the real world. The main contribution is
+to integrate generalization techniques from armed robots to
+humanoid robots to automatically select relevant task
+features and segment the task. The proposed work is shown
+to work well in simulation but further effort is needed to
+prove the effectiveness in the real world. Therefore, I
+suggest that this paper should be accepted with discretion.
+	The authors include the 6D position and orientation
+vectors as well as sensory information when selecting
+features in order to be more representative so
+non-experienced users can better train the tasks. These
+features are filtered and normalized through various
+methods in order to extract the most salient features which
+provides a good way to compare across trials. The authors
+also present a few different ways to create the segments
+of a task which is useful to explain why they chose the
+weighted product method in the end. 
+	The learned tasks are reproduced using DMP in
+simulation with 100% success rate. This shows that the
+tasks are learned well in simulation. Reproduction in the
+real world is left to future work. 
+	However, the claim in the abstract is that the
+learned dynamic motion primitives are validated in the
+real world, which doesn't quite seem to be the case. This
+makes sense though because the learning on real world
+results are not great. The authors acknowledge this and
+provide a reasonable explanation for this case and point
+out in the conclusion that it needs to be refined for real
+world tasks. 
+	The authors mention that the grasp task features
+were the state of the gripper, the linear velocity, and the
+position on the x-axis. Although the first two features
+would provide generalized task representations, it is a
+little concerning that the x-axis is one of the main
+features. Considering that the object is moved around the
+table (in simulation and real world) it does not seem like
+the position of the object should be a main factor for a
+generalized learned task. Therefore, some explanation of
+why the authors think the x-axis was chosen should be
+provided.
+	In figure 7, it is interesting that the force
+sensors don't have clear sections representing a grasping
+or pushing skill, since both require contact when in the
+move phase. Based on the features selected, it is clear
+that these features were not part of the final set for task
+representation, but some further explanation for why these
+were not well represented in grasping/pushing tasks is
+needed.  
+	There are also a few smaller notes I have regarding
+the paper. In figure 8 there are two green lines that
+appear to be the same color which makes it hard to
+distinguish which CP was the one in the confidence zone. It
+would be good to provide reasoning for the threshold values
+hardcoded in the feature selection and segmentation
+methods. Don't forget to link the video to the appropriate
+spot referenced in the paper. 
+
+Comments on the Video Attachment
+================================
+
+The video nicely demonstrates the tasks that are learned in
+this work. However, as the tasks are pretty straight
+forward, it could be trimmed as it gets repetitive after a
+few examples of each task.
